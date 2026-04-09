@@ -55,39 +55,5 @@ export function useConfig(): AppConfig {
 
 
 export function useGeoCity(fallback: string): string {
-  const [city, setCity] = useState(fallback);
-
-  useEffect(() => {
-    function fallbackToIp() {
-      fetch("https://ipapi.co/json/")
-        .then((r) => r.json())
-        .then((data) => { if (data?.city) setCity(data.city); })
-        .catch(() => {});
-    }
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          try {
-            const { latitude, longitude } = position.coords;
-            const res = await fetch(
-              `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=pt`
-            );
-            const data = await res.json();
-            const detected = data.city || data.locality || data.principalSubdivision;
-            if (detected) setCity(detected);
-            else fallbackToIp();
-          } catch {
-            fallbackToIp();
-          }
-        },
-        () => { fallbackToIp(); },
-        { timeout: 5000, maximumAge: 300000 }
-      );
-    } else {
-      fallbackToIp();
-    }
-  }, []);
-
-  return city;
+      return fallback;
 }
