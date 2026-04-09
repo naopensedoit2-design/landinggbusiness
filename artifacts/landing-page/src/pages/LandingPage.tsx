@@ -9,7 +9,7 @@ const translations: Record<string, Record<string, string>> = {
     hero_eyebrow: "Google Business Profile",
     hero_typing: "Apareça no Google quando alguém pesquisa o que você vende.",
     hero_sub: "Seu perfil otimizado por especialistas. Você só abre a porta.",
-    hero_badge: "📍 Atendimento em",
+    hero_badge: "📍 Atendimento na região",
     cta_btn: "Garantir minha vaga",
     cta_price: "por apenas",
     pain_tag: "O problema",
