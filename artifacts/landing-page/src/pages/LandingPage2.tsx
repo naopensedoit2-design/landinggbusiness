@@ -1,7 +1,7 @@
-fimport { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useConfig, useGeoCity, type AppConfig } from "../lib/sharedConfig";
 
-// ── Translations for Home 2 ──────────────────────────────────────
+// -- Translations for Home 2 --------------------------------------
 const t2: Record<string, Record<string, string>> = {
   pt: {
     lang_badge: "PT",
@@ -34,7 +34,7 @@ const t2: Record<string, Record<string, string>> = {
     proof_title: "Dados reais de um cliente após 6 meses de perfil otimizado",
     proof_quote: "Comecei a receber clientes falando que me encontraram no Google. Antes disso, nunca tinha acontecido.",
     proof_author: "Cliente · Alimentação · São Paulo",
-    anchor_tag: "Ancoragem de preço",f
+    anchor_tag: "Ancoragem de preço",
     anchor_title: "O que o mercado cobra por resultados similares",
     anchor_agency: "Agência de marketing digital",
     anchor_agency_price: "R$ 800–1.500/mês",
@@ -64,7 +64,7 @@ const t2: Record<string, Record<string, string>> = {
     commit_title: "Responda com honestidade:",
     commit_q1: "Seus clientes pesquisam no Google antes de visitar um negócio?",
     commit_q2: "Se eles te encontrarem com fotos profissionais e boas avaliações, a chance de virem aumenta?",
-    commit_q3: "Então faz sentido ter o seu perfil 100% profissional?",
+    commit_q3: "Então faz sentido tener o seu perfil 100% profissional?",
     commit_yes: "Sim",
     commit_cta: "Ótimo. Vamos resolver isso agora →",
     commit_price: "são só",
@@ -200,7 +200,7 @@ const t2: Record<string, Record<string, string>> = {
     anchor_free: "Freelancer digital",
     anchor_free_price: "R$ 500–800/mes",
     anchor_free_note: "Sin seguimiento, solo configuración básica",
-    anchor_ours: "Nuestro servicio",
+    anchor_ours: "Nuestro serviço",
     anchor_ours_note: "Inversión única · resultado que dura meses",
     anchor_badge: "Mejor relación calidad-precio",
     loss_tag: "Aversión a la pérdida",
@@ -219,7 +219,7 @@ const t2: Record<string, Record<string, string>> = {
     belong_i4: "Una foto profesional en el perfil vale más que un volante",
     belong_q: "¿Vas a formar parte de este grupo?",
     commit_tag: "Compromiso",
-    commit_title: "Responde con honestidad:",
+    commit_title: "Responde con honestidade:",
     commit_q1: "¿Tus clientes buscan en Google antes de visitar un negocio?",
     commit_q2: "¿Si te encuentran con fotos profesionales y buenas reseñas, aumenta la probabilidad de que vengan?",
     commit_q3: "¿Entonces tiene sentido tener tu perfil 100% profesional?",
@@ -227,7 +227,7 @@ const t2: Record<string, Record<string, string>> = {
     commit_cta: "Perfecto. Resolvamos esto ahora →",
     commit_price: "solo",
     commit_start: "para empezar",
-    urgent_tag: "Urgencia",
+    urgent_tag: "Urgência",
     urgent_title: "Esta condición especial termina en:",
     urgent_hours: "h",
     urgent_min: "m",
@@ -501,7 +501,7 @@ export default function LandingPage2() {
   return (
     <div style={{ background: "white", color: "var(--ink)", minHeight: "100vh" }}>
 
-      {/* ── LANGUAGE ── */}
+      {/* -- LANGUAGE -- */}
       <div style={{ position: "fixed", top: 16, right: 16, zIndex: 150 }}>
         <div style={{ position: "relative" }}>
           <button className="lang-btn" onClick={() => setLangOpen(!langOpen)}>
@@ -1040,7 +1040,7 @@ export default function LandingPage2() {
         </div>
       </section>
 
-      {/* ── STICKY BAR ── */}
+      {/* -- STICKY BAR -- */}
       <div className="sticky-bar" onClick={open}>
         <span>⚡</span>
         <span>{tl.sticky} {config.symbol} {config.entryPrice}</span>
