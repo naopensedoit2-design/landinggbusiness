@@ -605,7 +605,18 @@ export default function LandingPage() {
          
 
             <div style={{ marginBottom: 18 }}>
-              <Tag color="#4285F4">{t.hero_eyebrow}</Tag>
+                          <div style={{ marginBottom: 20 }}>
+              <span style={{
+                display: "inline-flex", alignItems: "center", gap: 6,
+                padding: "6px 16px", borderRadius: 100,
+                background: "white", border: "1.5px solid var(--line)",
+                fontSize: 13, fontWeight: 600, color: "var(--ink-soft)",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+              }} data-testid="hero-badge">
+                📍 Atendimento Local
+              </span>
+            </div>
+<Tag color="#4285F4">{t.hero_eyebrow}</Tag>
             </div>
 
             <h1 style={{
