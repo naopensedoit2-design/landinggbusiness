@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+fimport { useState, useEffect, useRef, useCallback } from "react";
 import { useConfig, useGeoCity, type AppConfig } from "../lib/sharedConfig";
 
 // ── Translations for Home 2 ──────────────────────────────────────
@@ -34,7 +34,7 @@ const t2: Record<string, Record<string, string>> = {
     proof_title: "Dados reais de um cliente após 6 meses de perfil otimizado",
     proof_quote: "Comecei a receber clientes falando que me encontraram no Google. Antes disso, nunca tinha acontecido.",
     proof_author: "Cliente · Alimentação · São Paulo",
-    anchor_tag: "Ancoragem de preço",
+    anchor_tag: "Ancoragem de preço",f
     anchor_title: "O que o mercado cobra por resultados similares",
     anchor_agency: "Agência de marketing digital",
     anchor_agency_price: "R$ 800–1.500/mês",
@@ -540,7 +540,17 @@ export default function LandingPage2() {
             </span>
           </div>
 
-          {/* Eyebrow */}
+                      <div style={{ marginBottom: 20 }}>
+              <span style={{
+                display: "inline-flex", gap: 6, alignItems: "center",
+                padding: "5px 16px", borderRadius: 100,
+                background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)",
+                fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.7)", letterSpacing: "0.07em",
+              }}>
+                <GoogleDots /> Business Profile · Atendimento Local
+              </span>
+            </div>
+
        
 
           {/* Curiosity headline */}
