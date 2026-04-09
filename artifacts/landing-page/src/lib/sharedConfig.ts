@@ -1,54 +1,4 @@
 import { useState, useEffect } from "react";
-
-export const DEFAULT_CONFIG = {
-    currency: "BRL",
-    symbol: "R$",
-    totalPrice: 470,
-    entryPrice: 235,
-    deliveryPrice: 235,
-    anchorPrice: 890,
-    paymentMethod: "pix" as "pix" | "transfer" | "cash" | "card",
-    paymentKey: "005.173.370-61",
-    whatsapp: "SEU_WHATSAPP",
-    city: "SUA_CIDADE",
-    country: "Brasil",
-    salesName: "SEU_NOME",
-};
-
-export type AppConfig = typeof DEFAULT_CONFIG;
-
-const BIN_ID = "69d7250336566621a8928d32";
-const API_KEY = "$2a$10$ZFOZm7rwHfh7FlShxfePVOoHK1nJy44DsYs5rQOV9n46NsUWm9FoO";
-const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-const HEADERS = { "Content-Type": "application/json", "X-Master-Key": API_KEY };
-
-const STORAGE_KEY = "gbp_admin_config";
-export const ADMIN_PASS_KEY = "gbp_admin_pass";
-export const DEFAULT_ADMIN_PASS = "admin123";
-
-export function getStoredConfig(): Partial<AppConfig> {
-    try {
-          const stored = localStorage.getItem(STORAGE_KEY);
-          if (stored) return JSON.parse(stored);
-    } catch {}
-    return {};
-}
-
-export function getMergedConfig(): AppConfig {
-    return { ...DEFAULT_CONFIG, ...getStoredConfig() };
-}
-
-export async function fetchCloudConfig(): Promise<Partial<AppConfig>> {
-    try {
-          const res = await fetch(`${BIN_URL}/latest`, { headers: { "X-Master-Key": API_KEY } });
-          if (!res.ok) return {};
-          const data = await res.json();
-          return data.record || {};
-    } catch {
-          return {};
-    }
-}
-
 export async function saveAdminConfig(updates: Partial<AppConfig>): Promise<void> {
     try {
           const current = getMergedConfig();
@@ -63,16 +13,20 @@ export async function saveAdminConfig(updates: Partial<AppConfig>): Promise<void
     } catch {}
 }
 
+
 export function getAdminPass(): string {
     return localStorage.getItem(ADMIN_PASS_KEY) || DEFAULT_ADMIN_PASS;
 }
+
 
 export function setAdminPass(pass: string): void {
     localStorage.setItem(ADMIN_PASS_KEY, pass);
 }
 
+
 export function useConfig(): AppConfig {
     const [config, setConfig] = useState<AppConfig>(getMergedConfig);
+
 
   useEffect(() => {
         fetchCloudConfig().then((cloud) => {
@@ -84,6 +38,7 @@ export function useConfig(): AppConfig {
         });
   }, []);
 
+
   useEffect(() => {
         const handler = () => setConfig(getMergedConfig());
         window.addEventListener("gbp_config_update", handler);
@@ -94,18 +49,45 @@ export function useConfig(): AppConfig {
         };
   }, []);
 
+
   return config;
 }
 
+
 export function useGeoCity(fallback: string): string {
-    const [city, setCity] = useState(fallback);
-    useEffect(() => {
-          fetch("https://ipapi.co/json/")
-            .then((r) => r.json())
-            .then((data) => {
-                      if (data && data.city) setCity(data.city);
-            })
-            .catch(() => {});
-    }, []);
-    return city;
+  const [city, setCity] = useState(fallback);
+
+  useEffect(() => {
+    function fallbackToIp() {
+      fetch("https://ipapi.co/json/")
+        .then((r) => r.json())
+        .then((data) => { if (data?.city) setCity(data.city); })
+        .catch(() => {});
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          try {
+            const { latitude, longitude } = position.coords;
+            const res = await fetch(
+              `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=pt`
+            );
+            const data = await res.json();
+            const detected = data.city || data.locality || data.principalSubdivision;
+            if (detected) setCity(detected);
+            else fallbackToIp();
+          } catch {
+            fallbackToIp();
+          }
+        },
+        () => { fallbackToIp(); },
+        { timeout: 5000, maximumAge: 300000 }
+      );
+    } else {
+      fallbackToIp();
+    }
+  }, []);
+
+  return city;
 }
