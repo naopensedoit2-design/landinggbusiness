@@ -1,0 +1,165 @@
+Build a single-file mobile-first HTML sales landing page (no frameworks, pure HTML/CSS/JS) 
+for a Google Business Profile optimization service targeting small Brazilian business owners. 
+The page must work perfectly on mobile screens (375px–430px wide) and feel like a premium, 
+immersive experience — NOT a generic template.
+
+---
+
+## CONTEXT & GOAL
+
+The reader is a small business owner (bakery, market, salon, pet shop, etc.) with a physical 
+location in a small Brazilian city. They have little digital knowledge and don't yet understand 
+the power of Google Business Profile. The page must EDUCATE them first, then SELL. 
+
+The final CTA is to generate a PIX payment of R$175,00 (entry installment of a R$350 service).
+
+---
+
+## AESTHETIC DIRECTION
+
+- Dark background (#0A0A0F) with deep green neon accents (#00FF88) and warm amber highlights 
+  (#FFB800) — professional, modern, trustworthy but with energy
+- Use Google Fonts: "Syne" (700/800) for headlines + "DM Sans" (400/500) for body text
+- Cinematic scroll experience: each section animates in as the user scrolls (IntersectionObserver)
+- Subtle grain texture overlay on background (CSS noise filter or SVG feTurbulence)
+- Glassmorphism cards (backdrop-filter: blur) for stat blocks and service details
+- Smooth scroll behavior throughout
+- No tacky stock photo vibes — use emoji and CSS illustrations instead of images
+
+---
+
+## PAGE STRUCTURE (scroll narrative — the user is "walked through" a story)
+
+### SECTION 1 — HERO (full viewport height)
+- Animated headline that types itself out: "Seu negócio aparece no Google quando alguém 
+  procura o que você vende?"
+- Subheadline: "Se a resposta for não — ou você não souber — esse serviço é pra você."
+- Floating badge: "📍 Atendimento em [cidade]"
+- Pulsing scroll-down arrow
+- Background: animated radial gradient that breathes slowly
+
+### SECTION 2 — PAIN POINT ("A realidade brutal")
+- Title: "Enquanto você está trabalhando duro, seus concorrentes aparecem primeiro."
+- 3 scenario cards, each representing a typical business owner situation:
+  Card 1: "🔍 Cliente pesquisa 'açougue perto de mim' — você não aparece"
+  Card 2: "📸 Seu perfil tem 2 fotos borradas tiradas em 2019"
+  Card 3: "⭐ Zero avaliações — cliente escolhe o concorrente com 47 reviews"
+- Each card slides in from the left with a 200ms stagger
+- Design: red-tinted glassmorphism cards to reinforce pain
+
+### SECTION 3 — EDUCATION ("Por que o Google Business muda tudo")
+- Title: "O Google Business Profile é o seu vendedor digital. Gratuito. 24h por dia."
+- Animated counter stats (count up on scroll enter):
+  → 97% das pessoas pesquisam no Google antes de visitar um negócio
+  → 42% mais pedidos de rota com fotos profissionais
+  → 5x mais chamadas para negócios com perfil otimizado
+- Visual: simple animated diagram showing "Pesquisa Google" → "Perfil otimizado" → "Cliente 
+  na porta" with connecting arrows that draw themselves
+
+### SECTION 4 — THE SERVICE ("O que você recebe")
+- Title: "Tudo feito por você. Você só abre a porta."
+- Vertical checklist with green checkmarks animating in one by one:
+  ✅ Criação ou otimização completa do seu perfil Google
+  ✅ Categoria certa para aparecer nas buscas do seu segmento
+  ✅ Descrição profissional do negócio (persuasiva, não genérica)
+  ✅ 15 fotos profissionais tiradas no seu estabelecimento
+  ✅ Horários, endereço, telefone e site 100% corretos
+  ✅ Configuração para aparecer no Google Maps
+  ✅ Entrega em até 2 semanas
+- Emphasis block: "Você não precisa saber nada de tecnologia. Nós cuidamos de tudo."
+
+### SECTION 5 — PROOF / SOCIAL PROOF ("Resultado real")
+- Title: "Resultado de um cliente nosso após a otimização"
+- Show a metrics dashboard mockup (CSS-built, no images) displaying:
+  → 983 visualizações do perfil
+  → 370 interações
+  → Aparece para: "casa colonial", "fruteira", "casa" — searches
+- Small disclaimer: "Dados reais de perfil otimizado em nov/2025–abr/2026"
+- This section should feel like a "proof screenshot" with a slightly rotated card and 
+  green glow — like showing a real phone screen
+
+### SECTION 6 — INVESTMENT ("O investimento")
+- Title: "Menos que um anúncio no jornal. Resultado que dura meses."
+- Large price display:
+  R$ 350,00
+  "Parcelado em 2x sem juros"
+- Two payment steps shown as a timeline:
+  → Entrada: R$175 via PIX (hoje, para reservar sua vaga)
+  → Entrega: R$175 via PIX (quando o perfil estiver 100% pronto)
+- Scarcity element: "⚡ Vagas limitadas por região — primeira resposta tem prioridade"
+- Validity: "Esta proposta vence em 15 dias"
+
+### SECTION 7 — OBJECTION HANDLING ("Perguntas frequentes")
+- Accordion-style FAQ (tap to expand), mobile-optimized:
+  Q: "Já tenho um perfil no Google. Isso funciona pra mim?"
+  A: "Sim. A maioria dos perfis está incompleta ou mal configurada. Otimizamos o que 
+     você já tem ou criamos do zero."
+  
+  Q: "Quanto tempo leva para ver resultado?"
+  A: "Você começa a aparecer nas buscas assim que o perfil for publicado. Resultados 
+     crescem nas primeiras 4–8 semanas."
+  
+  Q: "E se eu não tiver site?"
+  A: "Não precisa. O Google Business funciona de forma independente. Mas se quiser, 
+     podemos conversar sobre isso depois."
+  
+  Q: "Como sei que vale a pena para o meu negócio?"
+  A: "Se você tem endereço físico e atende clientes locais, vale. Simples assim."
+
+### SECTION 8 — FINAL CTA (sticky bottom + full section)
+- Sticky bottom bar (always visible): "Garantir minha vaga → Pagar R$175 via PIX"
+- Full CTA section:
+  Headline: "Seu concorrente vai aparecer antes de você amanhã. Ou você."
+  Subtext: "Reserve sua vaga agora com R$175 via PIX. Começamos em até 48 horas."
+  
+  BIG PIX BUTTON — on click:
+  1. Show a modal/overlay with:
+     - PIX key (placeholder: "00.000.000/0000-00 — CNPJ")
+     - Amount: R$ 175,00
+     - Name: [Business name placeholder]
+     - A "Copiar chave PIX" button that copies to clipboard and shows "✅ Copiado!"
+     - Instructions: "Após o pagamento, envie o comprovante via WhatsApp para 
+       confirmar sua vaga."
+     - WhatsApp button: "Enviar comprovante no WhatsApp →" 
+       (link: https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C+fiz+o+pagamento+da+entrada)
+  2. Modal has smooth slide-up animation
+  3. Background overlay blurs the page
+
+---
+
+## TECHNICAL REQUIREMENTS
+
+- Single HTML file with embedded CSS and JS — no external dependencies except Google Fonts 
+  (loaded via @import in CSS)
+- IntersectionObserver API for all scroll-triggered animations
+- Smooth counting animation for stats (requestAnimationFrame)
+- Accordion FAQ with CSS transitions only
+- Clipboard API for PIX key copy
+- All animations must respect prefers-reduced-motion
+- Page must load fast — no heavy assets, everything CSS-based
+- Meta tags: viewport, og:title, og:description for WhatsApp link preview
+- The page should have a `<title>` and favicon emoji: 📍
+
+---
+
+## COPY TONE
+
+- Direct, warm, slightly urgent — like a trusted advisor talking to a friend
+- Zero technical jargon — explain everything simply
+- Use "você" throughout (informal Brazilian Portuguese)
+- Short sentences. Strong verbs. Concrete numbers.
+- NEVER say "solução", "ecossistema", "potencializar" or other corporate filler words
+
+---
+
+## PLACEHOLDER VALUES TO REPLACE LATER (clearly marked with [BRACKETS])
+
+- PIX key: [CHAVE_PIX]
+- WhatsApp number: [SEU_WHATSAPP] (format: 5551999999999)
+- City name in hero badge: [SUA_CIDADE]
+- Business/service name: [SEU_NOME_OU_EMPRESA]
+
+---
+
+Build the complete, production-ready single HTML file. Make it feel premium, trustworthy, 
+and urgently compelling — like a page built by a top conversion-focused agency in São Paulo.

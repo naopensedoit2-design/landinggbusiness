@@ -1,0 +1,101 @@
+---
+
+## ADDITIONAL REQUIREMENT: GLOBAL / MULTILINGUAL VERSION
+
+This page will be used internationally by a door-to-door sales consultant who works in 
+different countries (Brazil, Argentina, Thailand, etc.). The page must adapt dynamically 
+to language, currency, and payment method.
+
+---
+
+### LANGUAGE SYSTEM
+
+Implement a full i18n (internationalization) system in vanilla JS using a `translations` 
+object. Every single text string on the page must be driven by this object — NO hardcoded 
+copy in HTML.
+
+Support these 4 languages at launch (easily extendable):
+- 🇧🇷 Portuguese (pt) — default
+- 🇺🇸 English (en)
+- 🇦🇷 Spanish (es)
+- 🇹🇭 Thai (th)
+
+Language selector UI:
+- Fixed top-right corner, always visible
+- Shows current flag emoji + language code (e.g., "🇧🇷 PT")
+- Tap opens a compact dropdown with all 4 options
+- On selection: page re-renders all text instantly with a 150ms fade transition
+- Selected language saved to localStorage so it persists on reload
+- On first load: auto-detect from navigator.language, fallback to PT
+
+All stats, CTAs, FAQ, section titles, and button labels must switch.
+
+---
+
+### CURRENCY & PAYMENT SYSTEM
+
+Replace all hardcoded R$/PIX references with a flexible CONFIG object at the top of the JS:
+
+```js
+const CONFIG = {
+  currency: "BRL",        // ISO 4217
+  symbol: "R$",
+  totalPrice: 350,
+  entryPrice: 175,
+  deliveryPrice: 175,
+  paymentMethod: "pix",   // options: "pix" | "transfer" | "cash" | "card"
+  paymentKey: "[CHAVE_PIX]",
+  whatsapp: "[SEU_WHATSAPP]",
+  city: "[SUA_CIDADE]",
+  country: "[SEU_PAIS]",
+  salesName: "[SEU_NOME]"
+};
+```
+
+The payment modal must adapt based on CONFIG.paymentMethod:
+- "pix" → show PIX key + copy button (Brazil)
+- "transfer" → show bank name, account number, routing info fields
+- "cash" → show "Pagamento combinado pessoalmente" message + WhatsApp button
+- "card" → show "Pagamento via link — enviamos pelo WhatsApp" + WhatsApp button
+
+All price displays on the page read from CONFIG dynamically (symbol + price).
+
+---
+
+### WHAT CHANGES PER COUNTRY (the consultant edits only CONFIG)
+
+To deploy in a new country, the consultant only needs to change:
+1. CONFIG values (currency, price, paymentMethod, paymentKey)
+2. The translations object for the target language if not yet added
+
+Add a clearly commented block at the very top of the HTML file:
+
+```html
+<!-- 
+  =============================================
+  EDIT THIS BLOCK FOR EACH NEW COUNTRY/CLIENT
+  =============================================
+-->
+```
+
+Followed immediately by the CONFIG object — making it impossible to miss.
+
+---
+
+### TRANSLATION CONTENT
+
+Provide full translations for all 4 languages. The Thai translation should be phonetically 
+correct and natural — use proper Thai script (ธุรกิจ, Google, etc.).
+
+The pain point scenarios in Section 2 should use generic business examples that work 
+globally (avoid "açougue" — use "restaurant", "salon", "store" equivalents per language).
+
+The stats (97%, 42%, 5x) are global Google data — keep them in all languages.
+
+---
+
+### FINAL NOTE ON FLEXIBILITY
+
+The goal is: the consultant lands in a new city in any country, opens the HTML file in a 
+text editor on his phone, changes 5 lines in CONFIG, switches the language flag, and has 
+a fully localized sales page ready to share via WhatsApp link in under 3 minutes.
