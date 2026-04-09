@@ -9,10 +9,10 @@ export const DEFAULT_CONFIG = {
       anchorPrice: 890,
       paymentMethod: "pix" as "pix" | "transfer" | "cash" | "card",
       paymentKey: "005.173.370-61",
-      whatsapp: "SEU_WHATSAPP",
-      city: "SUA_CIDADE",
+      whatsapp: "+5551985556993",
+      city: "",
       country: "Brasil",
-      salesName: "SEU_NOME",
+      salesName: "Leonardo",
 };
 
 export type AppConfig = typeof DEFAULT_CONFIG;
