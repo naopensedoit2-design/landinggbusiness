@@ -602,17 +602,7 @@ export default function LandingPage() {
       <section className="hero-bg" style={{ paddingTop: "clamp(80px,12vw,120px)", paddingBottom: "clamp(64px,10vw,100px)" }}>
         <div className="page-wrap">
           <div style={{ maxWidth: 780, margin: "0 auto", textAlign: "center" }}>
-            <div style={{ marginBottom: 20 }}>
-              <span style={{
-                display: "inline-flex", alignItems: "center", gap: 6,
-                padding: "6px 16px", borderRadius: 100,
-                background: "white", border: "1.5px solid var(--line)",
-                fontSize: 13, fontWeight: 600, color: "var(--ink-soft)",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-              }} data-testid="hero-badge">
-                {t.hero_badge} {city}
-              </span>
-            </div>
+         
 
             <div style={{ marginBottom: 18 }}>
               <Tag color="#4285F4">{t.hero_eyebrow}</Tag>
