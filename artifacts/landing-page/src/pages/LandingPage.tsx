@@ -65,7 +65,8 @@ const translations: Record<string, Record<string, string>> = {
     faq_a4: "Se você tem endereço físico e atende clientes locais, vale. Simples assim.",
     final_tag: "Comece agora",
     final_title: "Seu concorrente vai aparecer primeiro amanhã. A não ser que você aja hoje.",
-    final_sub: "Reserve sua vaga com R$ 175 via PIX. Começamos em até 48h.",
+    final_sub_prefix: "Reserve sua vaga com",
+    final_sub_suffix: "via PIX. Começamos em até 48h.",
     sticky_label: "Garantir minha vaga →",
     sticky_suffix: "via PIX",
     modal_title: "Pagar com PIX",
@@ -141,7 +142,8 @@ const translations: Record<string, Record<string, string>> = {
     faq_a4: "If you have a physical address and serve local customers, yes. Simple as that.",
     final_tag: "Start now",
     final_title: "Your competitor will show up first tomorrow. Unless you act today.",
-    final_sub: "Reserve your spot now. We start within 48 hours.",
+    final_sub_prefix: "Reserve your spot for",
+    final_sub_suffix: "via payment. We start within 48 hours.",
     sticky_label: "Reserve my spot →",
     sticky_suffix: "via payment",
     modal_title: "Payment Details",
@@ -217,7 +219,8 @@ const translations: Record<string, Record<string, string>> = {
     faq_a4: "Si tienes dirección física y atiendes clientes locales, sí. Así de simple.",
     final_tag: "Empieza ahora",
     final_title: "Tu competidor aparecerá primero mañana. A menos que actúes hoy.",
-    final_sub: "Reserva tu lugar ahora. Empezamos en 48 horas.",
+    final_sub_prefix: "Reserva tu lugar por",
+    final_sub_suffix: "por pago. Empezamos en 48 horas.",
     sticky_label: "Reservar mi lugar →",
     sticky_suffix: "por pago",
     modal_title: "Datos de Pago",
@@ -293,7 +296,8 @@ const translations: Record<string, Record<string, string>> = {
     faq_a4: "ถ้ามีที่อยู่จริงและให้บริการลูกค้าในพื้นที่ คุ้มค่า แค่นั้นเอง",
     final_tag: "เริ่มเลย",
     final_title: "คู่แข่งของคุณจะปรากฏก่อนพรุ่งนี้ ถ้าคุณไม่ลงมือวันนี้",
-    final_sub: "จองที่นั่งตอนนี้ เราเริ่มภายใน 48 ชั่วโมง",
+    final_sub_prefix: "จองที่นั่งในราคา",
+    final_sub_suffix: "ชำระ เราเริ่มภายใน 48 ชั่วโมง",
     sticky_label: "จองที่นั่งของฉัน →",
     sticky_suffix: "ชำระ",
     modal_title: "รายละเอียดการชำระเงิน",
@@ -317,6 +321,10 @@ const LANGUAGES = [
   { code: "es", flag: "🇦🇷", label: "ES" },
   { code: "th", flag: "🇹🇭", label: "TH" },
 ];
+
+function getFinalSub(t: Record<string, string>, config: AppConfig): string {
+  return `${t.final_sub_prefix} ${config.symbol} ${config.entryPrice} ${t.final_sub_suffix}`;
+}
 
 function detectLanguage(): string {
   const saved = localStorage.getItem("lang");
@@ -921,7 +929,7 @@ export default function LandingPage() {
             {t.final_title}
           </h2>
           <p className="reveal" style={{ fontSize: "clamp(15px, 2vw, 18px)", color: "rgba(255,255,255,0.55)", marginBottom: 36, lineHeight: 1.65 }}>
-            {t.final_sub}
+            {getFinalSub(t, config)}
           </p>
           <button
             className="btn-primary reveal"
