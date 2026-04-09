@@ -541,16 +541,7 @@ export default function LandingPage2() {
           </div>
 
           {/* Eyebrow */}
-          <div style={{ marginBottom: 20 }}>
-            <span style={{
-              display: "inline-flex", gap: 6, alignItems: "center",
-              padding: "5px 16px", borderRadius: 100,
-              background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)",
-              fontSize: 12, fontWeight: 700, color: "rgba(255,255,255,0.7)", letterSpacing: "0.07em",
-            }}>
-              <GoogleDots /> Business Profile · {city}
-            </span>
-          </div>
+       
 
           {/* Curiosity headline */}
           <h1 style={{
